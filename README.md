@@ -1,4 +1,4 @@
-# imgur-crawleage: 
+# imgur-crawler:
 
 ### Usage:
 ```
