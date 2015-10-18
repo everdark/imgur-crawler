@@ -23,8 +23,18 @@ def getArgParser():
                         help="optionally show download status")
     return parser
 
+def checkURL(url):
+    if not re.search("^http://", url):
+        if not re.search("^imgur.com/", url):
+            url = "http://imgur.com/" + url
+        else:
+            url = "http://" + url
+    return url
+
 def crawlImgur(src_url, dest_path, nitem, show_status=True):
-    soup = BeautifulSoup(requests.get(src_url).content, "lxml")
+    url = checkURL(src_url)
+    print url
+    soup = BeautifulSoup(requests.get(url).content, "lxml")
     tlist = soup.findAll("meta", {"property": "og:image"})
     
     if nitem is not None:
