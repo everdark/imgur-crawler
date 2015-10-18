@@ -19,8 +19,8 @@ def getArgParser():
                         help="the destination folder to save image")
     parser.add_argument("-n", "--nitem", metavar="N", type=int, action="store",
                         help="the maximum number of images to save")
-    parser.add_argument("-s", "--show-status", action="store_true", default=False,
-                        help="optionally show download status")
+    parser.add_argument("-s", "--simple", action="store_false", default=True,
+                        help="not show download status")
     return parser
 
 def checkURL(url):
@@ -33,7 +33,6 @@ def checkURL(url):
 
 def crawlImgur(src_url, dest_path, nitem, show_status=True):
     url = checkURL(src_url)
-    print url
     soup = BeautifulSoup(requests.get(url).content, "lxml")
     tlist = soup.findAll("meta", {"property": "og:image"})
     
@@ -72,7 +71,7 @@ def crawlImgur(src_url, dest_path, nitem, show_status=True):
 def main():
     parser = getArgParser()
     args = parser.parse_args()
-    crawlImgur(args.url, args.dest, args.nitem, args.show_status)
+    crawlImgur(args.url, args.dest, args.nitem, args.simple)
 
 if __name__ == "__main__":
     main()
