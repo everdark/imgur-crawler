@@ -13,5 +13,5 @@ positional arguments:
 optional arguments:
   -h, --help       show this help message and exit
   -n N, --nitem N  the maximum number of images to save (default: None)
-  -s, --simple     not show download status (default: True)
+  -s, --simple     not show download status (default: False)
 ```
